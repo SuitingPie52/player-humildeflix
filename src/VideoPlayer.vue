@@ -2,7 +2,8 @@ User
 <template>
   <div class="video-player">
     <h1 class="title">Humildeflix</h1>
-    <p class="welcome-message">Bem-vindo ao player Humildeflix. Basta colar o link do YouTube que você quiser e o player será acionado.</p>
+    <p class="welcome-message">Bem-vindo ao player Humildeflix. Basta colar o link do YouTube que você quiser e o player será acionado. 
+      Ps: eu sei fazer c player normal, só achei mais interessante assim, n me reprova, Caio. </p>
     <div class="copy-container">
       <p class="suggestion">Sugestão de link:</p>
       <div class="copy-button-container">
