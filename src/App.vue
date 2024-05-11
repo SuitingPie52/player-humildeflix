@@ -10,7 +10,7 @@
   
   <script>
   // Importe seu componente de player de vídeo
-  import VideoPlayer from './components/VideoPlayer.vue';
+  import VideoPlayer from './components/VideoBox.vue';
   
   export default {
     name: 'App',

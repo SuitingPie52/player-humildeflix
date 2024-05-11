@@ -1,76 +1,79 @@
 <template>
-  <div class="video-player">
-    <h1 class="title">Humildeflix</h1>
     <div class="video-container">
-      <video v-if="videoSrc" controls autoplay class="video">
+      <video v-if="videoSrc" ref="videoPlayer" autoplay class="video" @click="togglePlayPause">
         <source :src="videoSrc" type="video/mp4">
         Seu navegador não suporta o elemento de vídeo.
       </video>
+      <!-- Botão de pause/play dentro do vídeo -->
+      <button class="play-pause-button-video" :class="{ playing: isPlaying }" @click="togglePlayPause">
+        {{ isPlaying ? '❚❚' : '▶' }}
+      </button>
     </div>
-  </div>
-</template>
-
-<script>
-export default {
-  data() {
-    return {
-      videoSrc: ''
-    };
-  },
-  mounted() {
-    // Importa o vídeo dinamicamente
-    import('@/assets/lahaine.mp4').then(video => {
-      this.videoSrc = video.default;
-    }).catch(error => {
-      console.error('Erro ao carregar o vídeo:', error);
-    });
+  </template>
+  
+  <script>
+  export default {
+    props: {
+      videoSrc: {
+        type: String,
+        required: true
+      }
+    },
+    data() {
+      return {
+        isPlaying: false
+      };
+    },
+    methods: {
+      togglePlayPause() {
+        const video = this.$refs.videoPlayer;
+        if (video.paused) {
+          video.play();
+          this.isPlaying = true;
+        } else {
+          video.pause();
+          this.isPlaying = false;
+        }
+      }
+    }
+  };
+  </script>
+  
+  <style scoped>
+  /* Estilos para o player de vídeo */
+  .video-container {
+    position: relative;
+    width: 100%;
   }
-};
-</script>
-
-<style scoped>
-.video-player {
-  font-family: Baskerville, serif;
-  background-color: #000;
-  color: #ff0000;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 800px;
-  margin: 0 auto;
-  margin-top: 200px;
-  border: 2px solid transparent; /* Adicionando uma borda de 2px */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adicionando sombra suave */
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transição suave para borda e sombra */
-}
-
-.video-player:hover {
-  border-color: #ff0000; /* Alterando a cor da borda ao passar o mouse */
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Alterando a sombra ao passar o mouse */
-}
-
-.title {
-  font-size: 24px;
-  margin-bottom: 10px;
-  text-align: center; /* Alinhar o título ao centro */
-}
-
-.video-container {
-  margin-top: 20px;
-  width: 100%;
-  height: 0;
-  padding-bottom: 56.25%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.video {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* Ajustar o tamanho do vídeo */
-  top: 0;
-  left: 0;
-}
-</style>
+  
+  .video {
+    width: 100%;
+    height: auto;
+  }
+  
+  .play-pause-button-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 24px;
+    transition: background-color 0.3s ease;
+    z-index: 1; /* Certifica-se de que o botão está na frente do vídeo */
+    opacity: 0; /* Oculta o botão por padrão */
+  }
+  
+  .play-pause-button-video.playing {
+    opacity: 1; /* Exibe o botão quando o vídeo estiver em reprodução */
+  }
+  
+  .play-pause-button-video:hover {
+    background-color: rgba(255, 0, 0, 0.8);
+  }
+  </style>
+  
