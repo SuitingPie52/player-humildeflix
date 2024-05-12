@@ -13,11 +13,13 @@
       <!-- Barra de tempo total -->
       <div class="total-time-bar"></div>
       <!-- Barra de tempo assistido -->
-      <div class="time-bar" v-if="showButton" @click="seekVideo($event)">
-        <div class="progress" :style="{ width: currentTimePercentage }"></div>
-        <!-- Indicador de tempo -->
-        <div class="time-indicator">{{ currentTime }}</div>
-      </div>
+      <transition name="fade">
+        <div class="time-bar" v-if="showButton" @click="seekVideo($event)">
+          <div class="progress" :style="{ width: currentTimePercentage }"></div>
+          <!-- Indicador de tempo -->
+          <div class="time-indicator">{{ currentTime }}</div>
+        </div>
+      </transition>
     </div>
   </template>
   
@@ -146,6 +148,12 @@
     bottom: 20px; /* Ajusta a posição vertical */
     left: 10px; /* Ajusta a posição horizontal */
     cursor: pointer;
+    transition: opacity 1s;
+  }
+  
+  .time-bar.fade-enter,
+  .time-bar.fade-leave-to {
+    opacity: 0;
   }
   
   .progress {
@@ -159,6 +167,12 @@
     right: 10px; /* Posiciona no canto inferior direito */
     color: #fff;
     font-size: 12px;
+    transition: opacity 1s;
+  }
+  
+  .time-indicator.fade-enter,
+  .time-indicator.fade-leave-to {
+    opacity: 0;
   }
   </style>
   
