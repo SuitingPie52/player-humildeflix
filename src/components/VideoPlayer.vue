@@ -143,7 +143,7 @@
     height: 5px; /* Reduz a altura da barra de tempo */
     background-color: rgba(211, 211, 211, 0.5); /* Define o fundo transparente */
     position: absolute;
-    bottom: -30px; /* Ajusta a posição vertical */
+    bottom: 20px; /* Ajusta a posição vertical */
     left: 10px; /* Ajusta a posição horizontal */
     cursor: pointer;
   }
