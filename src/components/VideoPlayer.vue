@@ -13,8 +13,9 @@
       <!-- Barra de tempo -->
       <div class="time-bar" v-if="showButton" @click="seekVideo($event)">
         <div class="progress" :style="{ width: currentTimePercentage }"></div>
-        <div class="time-indicator">{{ currentTime }}</div>
       </div>
+      <!-- Indicador de tempo -->
+      <div class="time-indicator" v-if="showButton">{{ currentTime }}</div>
     </div>
   </template>
   
@@ -137,17 +138,12 @@
   
   /* Estilos para a barra de tempo */
   .time-bar {
-    width: 100%;
-    height: 40px; /* Altura aumentada para tornar mais fácil clicar */
-    background-color: #ccc;
+    width: calc(100% - 50px); /* Reduz o comprimento da barra de tempo */
+    height: 5px; /* Reduz a altura da barra de tempo */
+    background-color: transparent; /* Define o fundo transparente */
     position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10px;
-    box-sizing: border-box;
+    bottom: -20px; /* Ajusta a posição vertical */
+    left: 10px; /* Ajusta a posição horizontal */
     cursor: pointer;
   }
   
@@ -157,8 +153,10 @@
   }
   
   .time-indicator {
+    position: absolute;
+    bottom: calc(100% + 5px); /* Posiciona o indicador abaixo da barra de tempo */
+    left: 10px; /* Ajusta a posição horizontal */
     color: #fff;
     font-size: 12px;
   }
   </style>
-  
