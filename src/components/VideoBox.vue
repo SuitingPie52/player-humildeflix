@@ -54,6 +54,8 @@ export default {
   border: 2px solid transparent; /* Adicionando uma borda de 2px */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adicionando sombra suave */
   transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transição suave para borda e sombra */
+  height: 525px;
+
 }
 
 .video-box:hover {
