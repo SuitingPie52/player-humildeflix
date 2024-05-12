@@ -10,12 +10,14 @@
           <span class="play-pause-icon">{{ isPlaying ? '▶' : '❚❚' }}</span>
         </button>
       </transition>
-      <!-- Barra de tempo -->
+      <!-- Barra de tempo total -->
+      <div class="total-time-bar"></div>
+      <!-- Barra de tempo assistido -->
       <div class="time-bar" v-if="showButton" @click="seekVideo($event)">
         <div class="progress" :style="{ width: currentTimePercentage }"></div>
+        <!-- Indicador de tempo -->
+        <div class="time-indicator">{{ currentTime }}</div>
       </div>
-      <!-- Indicador de tempo -->
-      <div class="time-indicator" v-if="showButton">{{ currentTime }}</div>
     </div>
   </template>
   
@@ -136,13 +138,12 @@
     opacity: 0;
   }
   
-  /* Estilos para a barra de tempo */
   .time-bar {
-    width: calc(100% - 50px); /* Reduz o comprimento da barra de tempo */
+    width: calc(100% - 10px); /* Reduz o comprimento da barra de tempo */
     height: 5px; /* Reduz a altura da barra de tempo */
-    background-color: transparent; /* Define o fundo transparente */
+    background-color: rgba(211, 211, 211, 0.5); /* Define o fundo transparente */
     position: absolute;
-    bottom: -20px; /* Ajusta a posição vertical */
+    bottom: -30px; /* Ajusta a posição vertical */
     left: 10px; /* Ajusta a posição horizontal */
     cursor: pointer;
   }
@@ -154,9 +155,10 @@
   
   .time-indicator {
     position: absolute;
-    bottom: calc(100% + 5px); /* Posiciona o indicador abaixo da barra de tempo */
-    left: 10px; /* Ajusta a posição horizontal */
+    bottom: -20px; /* Ajusta a posição vertical */
+    right: 10px; /* Posiciona no canto inferior direito */
     color: #fff;
     font-size: 12px;
   }
   </style>
+  
